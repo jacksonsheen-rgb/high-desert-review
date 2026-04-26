@@ -2,7 +2,7 @@
 import { defineConfig } from "astro/config";
 import { rehypeBaseUrl } from "./src/plugins/rehype-base-url.mjs";
 
-const base = "";
+const base = "/blog2";
 
 // https://astro.build/config
 export default defineConfig({
