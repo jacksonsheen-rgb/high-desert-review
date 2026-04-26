@@ -1,12 +1,12 @@
 backend:
   name: github
-  repo: jacksonsheen-rgb/blog2
+  repo: jacksonsheen-rgb/high-desert-review
   branch: main
 
 logo_url: /favicon.svg
 
 media_folder: public/images
-public_folder: /blog2/images
+public_folder: /high-desert-review/images
 
 collections:
   - name: posts
