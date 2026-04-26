@@ -2,4 +2,4 @@
 title: About
 ---
 
-This is Jackson's blog- do not read
+High Desert Review is a weekly personal blog focused on public policy in Utah, Arizona, and the broader Mountain West, written and edited by Jackson Sheen.
