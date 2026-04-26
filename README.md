@@ -5,11 +5,11 @@ a brutalist, static blog built with [astro](https://astro.build). edited via [sv
 ## setup
 
 ```sh
-pnpm install
-pnpm dev         # dev server
-pnpm build       # production build
-pnpm check       # typecheck + lint + format check
-pnpm format      # auto-format
+npm install
+npm run dev      # dev server
+npm run build    # production build
+npm run check    # typecheck + lint + format check
+npm run format   # auto-format
 ```
 
 ## cms
@@ -27,11 +27,3 @@ pushes to `main` trigger a github actions workflow that builds and deploys to gi
 - `astro.config.mjs` — site config, `base` path
 - `public/admin/config.yml` — cms fields and backend
 - `eslint.config.js` / `.prettierrc` — linting and formatting
-
-## switching to npm
-
-the project uses pnpm by default. to use npm instead:
-
-1. remove `"packageManager"` and `"pnpm"` fields from `package.json`
-2. delete `pnpm-lock.yaml` and run `npm install`
-3. in `.github/workflows/deploy.yml`, remove the `pnpm/action-setup` step, change `cache: pnpm` to `cache: npm`, and replace `pnpm` commands with `npm`

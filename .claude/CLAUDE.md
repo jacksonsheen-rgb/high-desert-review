@@ -2,9 +2,9 @@
 
 ## Code Quality
 
-The entire codebase MUST be fully clean before committing any code. `pnpm check` must pass with zero errors, warnings, or hints — even from code that wasn't changed.
+The entire codebase MUST be fully clean before committing any code. `npm run check` must pass with zero errors, warnings, or hints — even from code that wasn't changed.
 
-`pnpm check` runs: `astro check && eslint . && prettier --check .`
+`npm run check` runs: `astro check && eslint . && prettier --check .`
 
 ## Commits
 
@@ -18,17 +18,6 @@ Use conventional commit messages (e.g. `feat:`, `fix:`, `chore:`). All text must
 - All styling changes MUST follow `docs/design.md`. If the design spec doesn't cover a new element, extend the spec first, then implement.
 - Do not add inline styles, scoped `<style>` blocks, or CSS classes to Astro components unless absolutely necessary. Keep styling centralized in `global.css`.
 - `docs/spec.md` and `docs/design.md` must stay in sync with committed code at all times. Experimentation is fine, but any committed change that diverges from either doc must be reconciled before or at commit time. Prefer making the code compliant to the spec/design; if that is not feasible, update the spec/design to match the code.
-
-## Package Manager
-
-The project uses pnpm. If the user asks to switch to npm:
-
-1. Remove `"packageManager"` and `"pnpm"` fields from `package.json`
-2. Delete `pnpm-lock.yaml`, run `npm install`
-3. Update `.github/workflows/deploy.yml`: remove `pnpm/action-setup` step, change `cache: pnpm` to `cache: npm`, replace `pnpm` commands with `npm`
-4. Update `pnpm` references in this file (`CLAUDE.md`) to `npm` — including the `pnpm check` command in Code Quality
-5. Update `README.md`: replace `pnpm` commands with `npm`, remove the "switching to npm" section
-6. Remove this "Package Manager" section once the switch is complete
 
 ## Subpath Deployment
 
