@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: talmage89/blog
+  repo: jacksonsheen-rgb/blog2
   branch: main
 
 logo_url: /favicon.svg
