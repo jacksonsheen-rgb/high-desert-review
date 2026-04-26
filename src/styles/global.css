@@ -13,8 +13,9 @@
 }
 
 :root {
-  --color-fg: #000;
-  --color-bg: #fff;
+  --color-fg: #1a0d05;
+  --color-bg: #f2e5cc;
+  --color-accent: #9b4422;
   color-scheme: light dark;
   --font-sans: "Switzer", system-ui, sans-serif;
   --font-size-base: 16px;
@@ -27,7 +28,7 @@
   --space-xl: 2rem;
   --max-width: 640px;
   --border: 1px solid var(--color-fg);
-  --border-thick: 2px solid var(--color-fg);
+  --border-thick: 3px solid var(--color-accent);
 }
 
 * {
@@ -102,10 +103,12 @@ hr {
 time {
   font-size: var(--font-size-sm);
   margin-right: var(--space-sm);
+  color: var(--color-accent);
 }
 
 .tag {
   font-size: var(--font-size-sm);
+  color: var(--color-accent);
 }
 
 .tag::before {
@@ -172,7 +175,8 @@ article code {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-fg: #d4d4d4;
-    --color-bg: #0e0e0e;
+    --color-fg: #d1a87a;
+    --color-bg: #0e0804;
+    --color-accent: #c96438;
   }
 }

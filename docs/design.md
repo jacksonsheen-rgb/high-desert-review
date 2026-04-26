@@ -2,11 +2,11 @@
 
 ## philosophy
 
-brutalist. the design is the absence of design. content is the subject; everything else gets out of the way.
+brutalist with an earth-tone soul. the design evokes the geology of moab, utah — sandstone warmth, canyon shadow, the dry red-orange of red rock. content is still the subject; the palette is the only atmosphere.
 
-**typography is the only visual device.** no rounded corners, no shadows, no gradients, no illustrations, no hero images, no accent colors, no icons-as-decoration. if it isn't text or a hairline rule separating text, it shouldn't be on the page. the site has exactly one family (switzer), one base size, and one accent size for metadata. headings don't scale — `h1`, `h2`, and `h3` are the same size as body text, distinguished only by weight and surrounding whitespace. the reader supplies the hierarchy; the page doesn't shout it.
+**typography is the only visual device.** no rounded corners, no shadows, no gradients, no illustrations, no hero images, no icons-as-decoration. if it isn't text or a rule separating text, it shouldn't be on the page. the site has exactly one family (switzer), one base size, and one accent size for metadata. headings don't scale — `h1`, `h2`, and `h3` are the same size as body text, distinguished only by weight and surrounding whitespace. the reader supplies the hierarchy; the page doesn't shout it.
 
-**monochrome, always.** two colors: foreground and background. they invert under `prefers-color-scheme: dark`, but the palette never grows beyond that. no link color, no tag color, no highlight, no callout. contrast comes from ink on paper, not from hue.
+**earth tones, controlled.** three tokens: foreground, background, and accent. light mode is pale sandstone parchment (`--color-bg`) with deep canyon shadow text (`--color-fg`). dark mode is near-black desert night with warm sandstone-glow text. accent (`--color-accent`) is a muted terracotta — used only for metadata (time, tags) and blockquote borders. the palette does not grow beyond these three.
 
 **no chrome, no affordances beyond the necessary.** no search, no sidebar, no categories, no related posts, no social buttons, no analytics banner, no cookie notice. the nav is two links. the footer is a copyright line. a post is a title, a date, tags, and prose.
 
@@ -33,13 +33,15 @@ brutalist. the design is the absence of design. content is the subject; everythi
 
 ## color (reference)
 
-- `--color-fg` and `--color-bg`, swapped under `prefers-color-scheme: dark`
+- `--color-fg`: deep canyon shadow (`#1a0d05` light / `#d1a87a` dark)
+- `--color-bg`: pale sandstone parchment (`#f2e5cc` light / `#0e0804` dark)
+- `--color-accent`: terracotta red rock (`#9b4422` light / `#c96438` dark) — metadata and blockquote borders only
 - `color-scheme: light dark` on `:root` plus a matching `<meta>` in `<head>` to align form controls, scrollbars, and initial paint
 
 ## components (reference)
 
-- **tags** — inline, `#` prefix via `::before`, metadata size
-- **time** — metadata size, sits inline before tags
+- **tags** — inline, `#` prefix via `::before`, metadata size, `--color-accent`
+- **time** — metadata size, sits inline before tags, `--color-accent`
 - **pagination** — flex row, space-between
 - **article content** — dash-marker `ul`, decimal `ol`, thick left border on `blockquote`, bordered `pre` with horizontal scroll, monospace inline `code`, responsive images
 - **links** — underlined by default, underline removed on hover

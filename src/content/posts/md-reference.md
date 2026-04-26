@@ -31,8 +31,8 @@ Ordered list:
 Nested list:
 
 - Parent item
-    - Child item
-    - Another child
+  - Child item
+  - Another child
 - Second parent
 
 ## Task Lists
@@ -52,8 +52,8 @@ Here's a [link to somewhere](/about) in the middle of a sentence.
 > This is a blockquote. It should have a visible left border and feel indented from the main content flow.
 
 > Multi-paragraph blockquote.
-> >
-> Second paragraph inside the quote.
+>
+> > Second paragraph inside the quote.
 
 ## Code Blocks
 
@@ -68,7 +68,8 @@ function hello() {
 ## Horizontal Rules
 
 Content above the rule.
-  ---
+
+---
 
 Content below the rule.
 
