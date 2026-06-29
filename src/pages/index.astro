@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Link from "../components/Link.astro";
 import Base from "../layouts/Base.astro";
-import { displayTags } from "../lib/posts";
+import { displayTags, formatDate } from "../lib/posts";
 
 const PAGE_SIZE = 10;
 
@@ -17,35 +17,47 @@ const posts = allPosts.slice(0, PAGE_SIZE);
 ---
 
 <Base title="Posts">
-  <h1>Posts</h1>
-  <hr />
-  <ul>
+  <div class="prose">
+    <h1>Posts</h1>
+    <hr />
+    <ul class="post-list">
+      {
+        posts.map((post) => (
+          <li>
+            {post.data.cover && (
+              <img src={post.data.cover} alt="" class="post-thumb" />
+            )}
+            <div class="post-text">
+              {post.data.category && (
+                <span class="category">{post.data.category}</span>
+              )}
+              <Link href={`/posts/${post.id}`}>{post.data.title}</Link>
+              <div>
+                <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                  {formatDate(post.data.date)}
+                </time>
+                {displayTags(post).length > 0 && (
+                  <span class="tags">
+                    {displayTags(post).map((tag) => (
+                      <Link href={`/tags/${tag}`} class="tag">
+                        {tag}
+                      </Link>
+                    ))}
+                  </span>
+                )}
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
     {
-      posts.map((post) => (
-        <li>
-          <time datetime={post.data.date.toISOString().slice(0, 10)}>
-            {post.data.date.toISOString().slice(0, 10)}
-          </time>
-          <Link href={`/posts/${post.id}`}>{post.data.title}</Link>
-          {displayTags(post).length > 0 && (
-            <span class="tags">
-              {displayTags(post).map((tag) => (
-                <Link href={`/tags/${tag}`} class="tag">
-                  {tag}
-                </Link>
-              ))}
-            </span>
-          )}
-        </li>
-      ))
+      totalPages > 1 && (
+        <div class="pagination">
+          <span />
+          <Link href="/2">Next</Link>
+        </div>
+      )
     }
-  </ul>
-  {
-    totalPages > 1 && (
-      <div class="pagination">
-        <span />
-        <Link href="/2">Next</Link>
-      </div>
-    )
-  }
+  </div>
 </Base>

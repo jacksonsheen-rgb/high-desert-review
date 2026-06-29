@@ -2,17 +2,17 @@
 
 ## philosophy
 
-brutalist with an earth-tone soul. the design evokes the geology of moab, utah — sandstone warmth, canyon shadow, the dry red-orange of red rock. content is still the subject; the palette is the only atmosphere.
+editorial with an earth-tone soul. the design evokes the geology of moab, utah — sandstone warmth, canyon shadow, the dry red-orange of red rock. content is still the subject; the palette is the only atmosphere.
 
-**typography is the only visual device.** no rounded corners, no shadows, no gradients, no illustrations, no hero images, no icons-as-decoration. if it isn't text or a rule separating text, it shouldn't be on the page. the site has exactly one family (switzer), one base size, and one accent size for metadata. headings don't scale — `h1`, `h2`, and `h3` are the same size as body text, distinguished only by weight and surrounding whitespace. the reader supplies the hierarchy; the page doesn't shout it.
+**typography is the only visual device.** no rounded corners, no shadows, no gradients, no illustrations, no hero images, no icons-as-decoration. if it isn't text or a rule separating text, it shouldn't be on the page. the site uses two families: switzer (sans-serif) for body and ui, and playfair display (serif) for h1 and h2 headings. the display serif gives the masthead and article titles an editorial weight; h3 and below remain body-weight switzer. headings scale: h1 at 2.25rem, h2 at 1.375rem, h3 at 1rem body weight. the reader supplies the context; the typography signals the hierarchy.
 
 **earth tones, controlled.** three tokens: foreground, background, and accent. light mode is pale sandstone parchment (`--color-bg`) with deep canyon shadow text (`--color-fg`). dark mode is near-black desert night with warm sandstone-glow text. accent (`--color-accent`) is a muted terracotta — used only for metadata (time, tags) and blockquote borders. the palette does not grow beyond these three.
 
-**no chrome, no affordances beyond the necessary.** no search, no sidebar, no categories, no related posts, no social buttons, no analytics banner, no cookie notice. the nav is two links. the footer is a copyright line. a post is a title, a date, tags, and prose.
+**minimal chrome, only necessary affordances.** no search, no sidebar, no related posts, no social buttons, no analytics banner, no cookie notice. the nav is two links. the footer carries a site tagline, three nav links, and a copyright line. a post may carry an optional category label rendered as a small-caps uppercase eyebrow above the title.
 
 **no javascript on the frontend.** the site ships as static html and css. this isn't a performance flex — it's a commitment to the idea that reading a blog should not require a runtime. if a feature needs js to exist, the feature doesn't exist here.
 
-**whitespace over ornament.** where other designs reach for a divider, a card, or a background color, this one reaches for a blank line. the layout is a single centered column capped at a comfortable measure; nothing fights the text for attention.
+**whitespace over ornament.** where other designs reach for a divider, a card, or a background color, this one reaches for a blank line. the layout is a single centered column: a wide outer container (`--max-width: 1100px`) that lets the header and footer breathe, with prose content constrained to `--prose-width: 65ch` via `article` and the `.prose` utility class. nothing fights the text for attention.
 
 **brutalism, not hostility.** the aesthetic is raw, not user-hostile. type is legible, line-height is generous, the measure is narrow enough to read without fatigue, and dark mode is automatic. the goal is clarity stripped of decoration, not the appearance of clarity at the cost of it.
 
@@ -28,7 +28,8 @@ brutalist with an earth-tone soul. the design evokes the geology of moab, utah �
 ## type (reference)
 
 - self-hosted switzer (400 + 600), `font-display: block` to avoid fouc
-- one family, two sizes (body + metadata), one generous line-height
+- playfair display loaded via google fonts (700 regular, 400 italic) for h1 and h2 only
+- two families, two sizes (body + metadata), one generous line-height
 - monospace is the single carve-out: inline and block `code` use the browser default monospace stack, because code is unreadable in proportional type
 
 ## color (reference)
@@ -41,9 +42,13 @@ brutalist with an earth-tone soul. the design evokes the geology of moab, utah �
 ## components (reference)
 
 - **tags** — inline, `#` prefix via `::before`, metadata size, `--color-accent`
-- **time** — metadata size, sits inline before tags, `--color-accent`
+- **time** — metadata size, sits inline before tags, `--color-accent`; formatted as "Month D, YYYY" via `formatDate()` in `src/lib/posts.ts`
 - **pagination** — flex row, space-between
-- **article content** — dash-marker `ul`, decimal `ol`, thick left border on `blockquote`, bordered `pre` with horizontal scroll, monospace inline `code`, responsive images
+- **category** — optional eyebrow label above title; `.category` class; 0.7rem, uppercase, letter-spaced, `--color-accent`
+- **lede** — `.lede` class for the opening paragraph of an article; 1.125rem, line-height 1.65
+- **post list** — `.post-list` flex column with `--space-lg` gap; each item shows optional category, then title link, then date/tags row
+- **footer** — tagline (italic), nav links (flex row), copyright line
+- **article content** — `max-width: var(--prose-width)` via `article` selector; dash-marker `ul`, decimal `ol`, thick left border on `blockquote`, bordered `pre` with horizontal scroll, monospace inline `code`, responsive images
 - **links** — underlined by default, underline removed on hover
 
 ## extending

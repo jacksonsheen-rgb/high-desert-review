@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Link from "../../components/Link.astro";
 import Base from "../../layouts/Base.astro";
-import { displayTags } from "../../lib/posts";
+import { displayTags, formatDate } from "../../lib/posts";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -17,10 +17,18 @@ const { Content } = await render(post);
 ---
 
 <Base title={post.data.title}>
+  {
+    post.data.cover && (
+      <div class="cover">
+        <img src={post.data.cover} alt={post.data.title} />
+      </div>
+    )
+  }
   <article>
+    {post.data.category && <span class="category">{post.data.category}</span>}
     <h1>{post.data.title}</h1>
     <time datetime={post.data.date.toISOString().slice(0, 10)}>
-      {post.data.date.toISOString().slice(0, 10)}
+      {formatDate(post.data.date)}
     </time>
     {
       displayTags(post).length > 0 && (

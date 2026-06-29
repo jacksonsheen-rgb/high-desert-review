@@ -6,3 +6,11 @@ export function displayTags(post: CollectionEntry<"posts">): string[] {
     ? post.data.tags
     : ["draft", ...post.data.tags];
 }
+
+export function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}

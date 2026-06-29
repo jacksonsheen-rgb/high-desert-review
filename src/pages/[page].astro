@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Link from "../components/Link.astro";
 import Base from "../layouts/Base.astro";
-import { displayTags } from "../lib/posts";
+import { displayTags, formatDate } from "../lib/posts";
 
 export async function getStaticPaths() {
   const pageSize = 10;
@@ -29,31 +29,43 @@ const posts = allPosts.slice(start, start + pageSize);
 ---
 
 <Base title={`Page ${page}`}>
-  <h1>Posts</h1>
-  <hr />
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <time datetime={post.data.date.toISOString().slice(0, 10)}>
-            {post.data.date.toISOString().slice(0, 10)}
-          </time>
-          <Link href={`/posts/${post.id}`}>{post.data.title}</Link>
-          {displayTags(post).length > 0 && (
-            <span class="tags">
-              {displayTags(post).map((tag: string) => (
-                <Link href={`/tags/${tag}`} class="tag">
-                  {tag}
-                </Link>
-              ))}
-            </span>
-          )}
-        </li>
-      ))
-    }
-  </ul>
-  <div class="pagination">
-    <Link href={page === 2 ? "/" : `/${page - 1}`}>Prev</Link>
-    {page < totalPages ? <Link href={`/${page + 1}`}>Next</Link> : <span />}
+  <div class="prose">
+    <h1>Posts</h1>
+    <hr />
+    <ul class="post-list">
+      {
+        posts.map((post) => (
+          <li>
+            {post.data.cover && (
+              <img src={post.data.cover} alt="" class="post-thumb" />
+            )}
+            <div class="post-text">
+              {post.data.category && (
+                <span class="category">{post.data.category}</span>
+              )}
+              <Link href={`/posts/${post.id}`}>{post.data.title}</Link>
+              <div>
+                <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                  {formatDate(post.data.date)}
+                </time>
+                {displayTags(post).length > 0 && (
+                  <span class="tags">
+                    {displayTags(post).map((tag: string) => (
+                      <Link href={`/tags/${tag}`} class="tag">
+                        {tag}
+                      </Link>
+                    ))}
+                  </span>
+                )}
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="pagination">
+      <Link href={page === 2 ? "/" : `/${page - 1}`}>Prev</Link>
+      {page < totalPages ? <Link href={`/${page + 1}`}>Next</Link> : <span />}
+    </div>
   </div>
 </Base>

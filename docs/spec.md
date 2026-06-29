@@ -24,7 +24,7 @@ the architecture optimizes for stability. the system is built once. breakage tra
 ## content
 
 - markdown in `src/content/posts/`
-- frontmatter: `title`, `date`, `tags` (string array, optional), `draft` (boolean)
+- frontmatter: `title`, `date`, `tags` (string array, optional), `draft` (boolean), `category` (string, optional)
 - drafts hidden in production, visible in dev
 
 ## pages

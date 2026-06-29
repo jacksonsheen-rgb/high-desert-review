@@ -4,9 +4,15 @@ import Link from "./Link.astro";
 
 <hr />
 <footer>
-  <p>
-    CC0 &nbsp;/&nbsp; <Link
-      href="https://github.com/jacksonsheen-rgb/high-desert-review">Source</Link
-    >
+  <p class="footer-tagline">
+    Public policy in Utah, Arizona, and the Mountain West.
   </p>
+  <nav class="footer-nav">
+    <Link href="/">Home</Link>
+    <Link href="/about">About</Link>
+    <Link href="https://github.com/jacksonsheen-rgb/high-desert-review"
+      >Source</Link
+    >
+  </nav>
+  <p>CC0 {new Date().getFullYear()} High Desert Review</p>
 </footer>
