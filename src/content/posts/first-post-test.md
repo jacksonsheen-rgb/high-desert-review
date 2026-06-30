@@ -3,7 +3,7 @@ title: The Three Realms of Political Commentary
 date: 2026-04-27T19:35:00
 tags:
   - Political Science
-draft: true
+draft: false
 category: Politics
 ---
 
