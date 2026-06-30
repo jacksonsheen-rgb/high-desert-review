@@ -4,7 +4,7 @@ date: 2026-06-29T16:26
 tags: []
 draft: false
 category: Personal
-cover: images/IMG_1690.jpeg
+cover: /images/IMG_1690.jpeg
 ---
 
 Hello!

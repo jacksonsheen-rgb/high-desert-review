@@ -38,7 +38,7 @@ const posts = allPosts.slice(start, start + pageSize);
           <li>
             {post.data.cover && (
               <img
-                src={`${import.meta.env.BASE_URL}${post.data.cover}`}
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${post.data.cover}`}
                 alt=""
                 class="post-thumb"
               />
