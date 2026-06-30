@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Link from "../components/Link.astro";
 import Base from "../layouts/Base.astro";
-import { displayTags, formatDate } from "../lib/posts";
+import { formatDate } from "../lib/posts";
 
 export async function getStaticPaths() {
   const pageSize = 10;
@@ -26,50 +26,38 @@ const totalPages = Math.ceil(allPosts.length / pageSize);
 const page = parseInt(Astro.params.page!, 10);
 const start = (page - 1) * pageSize;
 const posts = allPosts.slice(start, start + pageSize);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <Base title={`Page ${page}`}>
-  <div class="prose">
-    <h1>Posts</h1>
-    <hr />
-    <ul class="post-list">
-      {
-        posts.map((post) => (
-          <li>
+  <h1>Posts</h1>
+  <hr />
+  <ul class="post-list">
+    {
+      posts.map((post) => (
+        <li>
+          <Link href={`/posts/${post.id}`} class="post-card-link">
             {post.data.cover && (
-              <img
-                src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${post.data.cover}`}
-                alt=""
-                class="post-thumb"
-              />
+              <div class="post-card-img">
+                <img src={`${base}${post.data.cover}`} alt="" />
+              </div>
             )}
-            <div class="post-text">
+            <div class="post-card-text">
               {post.data.category && (
                 <span class="category">{post.data.category}</span>
               )}
-              <Link href={`/posts/${post.id}`}>{post.data.title}</Link>
-              <div>
-                <time datetime={post.data.date.toISOString().slice(0, 10)}>
-                  {formatDate(post.data.date)}
-                </time>
-                {displayTags(post).length > 0 && (
-                  <span class="tags">
-                    {displayTags(post).map((tag: string) => (
-                      <Link href={`/tags/${tag}`} class="tag">
-                        {tag}
-                      </Link>
-                    ))}
-                  </span>
-                )}
-              </div>
+              <p class="post-card-title">{post.data.title}</p>
+              <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                {formatDate(post.data.date)}
+              </time>
             </div>
-          </li>
-        ))
-      }
-    </ul>
-    <div class="pagination">
-      <Link href={page === 2 ? "/" : `/${page - 1}`}>Prev</Link>
-      {page < totalPages ? <Link href={`/${page + 1}`}>Next</Link> : <span />}
-    </div>
+          </Link>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="pagination">
+    <Link href={page === 2 ? "/" : `/${page - 1}`}>Prev</Link>
+    {page < totalPages ? <Link href={`/${page + 1}`}>Next</Link> : <span />}
   </div>
 </Base>
