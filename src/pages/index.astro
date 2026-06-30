@@ -25,7 +25,11 @@ const posts = allPosts.slice(0, PAGE_SIZE);
         posts.map((post) => (
           <li>
             {post.data.cover && (
-              <img src={post.data.cover} alt="" class="post-thumb" />
+              <img
+                src={`${import.meta.env.BASE_URL}${post.data.cover}`}
+                alt=""
+                class="post-thumb"
+              />
             )}
             <div class="post-text">
               {post.data.category && (
